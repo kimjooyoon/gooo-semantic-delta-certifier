@@ -27,8 +27,8 @@
     {"ordinal": 15, "id": "gooo://semantic-delta/artifact/release-binding", "domain": "ARTIFACT", "proof": "REGRESSION", "indicator": "GUARDRAIL", "name": "ArtifactReleaseBinding"}
   ],
   "corpus": [
-    {"id": "normal", "expected": "CLOSED", "purpose": "complete exact before-after corpus"},
-    {"id": "unknown", "expected": "UNKNOWN", "purpose": "missing exact evidence corpus"},
-    {"id": "refuted", "expected": "REFUTED", "purpose": "contradictory identity corpus"}
+    {"id": "normal", "expected": "CLOSED", "purpose": "complete_exact_before_after_corpus"},
+    {"id": "unknown", "expected": "UNKNOWN", "purpose": "missing_exact_evidence_corpus"},
+    {"id": "refuted", "expected": "REFUTED", "purpose": "contradictory_identity_corpus"}
   ]
 }

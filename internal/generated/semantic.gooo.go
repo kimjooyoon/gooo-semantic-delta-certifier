@@ -51,7 +51,7 @@ var Cells = []Cell{
 }
 
 var Corpus = []CorpusCase{
-	{ID: "normal", Expected: "CLOSED", Purpose: "complete exact before-after corpus"},
-	{ID: "unknown", Expected: "UNKNOWN", Purpose: "missing exact evidence corpus"},
-	{ID: "refuted", Expected: "REFUTED", Purpose: "contradictory identity corpus"},
+	{ID: "normal", Expected: "CLOSED", Purpose: "complete_exact_before_after_corpus"},
+	{ID: "unknown", Expected: "UNKNOWN", Purpose: "missing_exact_evidence_corpus"},
+	{ID: "refuted", Expected: "REFUTED", Purpose: "contradictory_identity_corpus"},
 }
