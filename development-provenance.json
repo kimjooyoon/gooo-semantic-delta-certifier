@@ -24,6 +24,12 @@
       "state": "REFUTED",
       "run_ids": [33630653824, 33630654971],
       "detail": "GitHub rejected runner.temp in job-level env before job execution; corrected by step-level GITHUB_ENV binding."
+    },
+    {
+      "code": "CI_COMPILE_FAILURE",
+      "state": "REFUTED",
+      "run_ids": [33630832141],
+      "detail": "Actions compiler caught a selector assignment using := and a missing generated package import; corrected in the same PR."
     }
   ],
   "notes": [

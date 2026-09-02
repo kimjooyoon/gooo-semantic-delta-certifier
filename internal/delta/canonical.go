@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+
+	"github.com/kimjooyoon/gooo-semantic-delta-certifier/internal/generated"
 )
 
 func canonicalJSON(value any) ([]byte, error) {
