@@ -64,7 +64,6 @@ func Generate(sourcePath, outputDir string) error {
 	result := semanticIR{Schema: "gooo/semantic-delta-certifier/semantic-ir/v1", Source: sourcePath, Protocol: authority.Protocol, DenominatorID: authority.DenominatorID, DenominatorTotal: authority.DenominatorTotal, StatusValues: authority.StatusValues, StatusPrecedence: authority.StatusPrecedence, ProofChoices: authority.ProofChoices, IndicatorClasses: authority.IndicatorClasses, UnknownFields: authority.UnknownFields, Cells: authority.Cells, Corpus: authority.Corpus}
 	jsonBytes, err := renderJSON(result)
 	if err != nil { return err }
-	jsonBytes = append(jsonBytes, '\n')
 	if err := os.WriteFile(filepath.Join(outputDir, "semantic_ir.json"), jsonBytes, 0o644); err != nil { return err }
 	goBytes := []byte(renderGo(authority))
 	return os.WriteFile(filepath.Join(outputDir, "semantic.gooo.go"), goBytes, 0o644)
