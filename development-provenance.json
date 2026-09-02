@@ -12,7 +12,20 @@
     "repository_writes": 0,
     "caller_owned_output": true
   },
-  "incidents": [],
+  "incidents": [
+    {
+      "code": "PR_FIRST_PROCESS_DEVIATION",
+      "state": "REFUTED",
+      "commit": "e65d5e7a945577703f8e72605f8ab2910d43fa08",
+      "detail": "Initial implementation was pushed to main before the single PR was opened. History is preserved; all subsequent correction is in the single PR."
+    },
+    {
+      "code": "CI_WORKFLOW_VALIDATION_FAILURE",
+      "state": "REFUTED",
+      "run_ids": [33630653824, 33630654971],
+      "detail": "GitHub rejected runner.temp in job-level env before job execution; corrected by step-level GITHUB_ENV binding."
+    }
+  ],
   "notes": [
     "GitHub Actions is the validation authority.",
     "No other Gooo repository or gooo-self-improvement-ledger is modified."

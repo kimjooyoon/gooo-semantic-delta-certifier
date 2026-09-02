@@ -14,10 +14,6 @@ permissions:
 jobs:
   package:
     runs-on: ubuntu-latest
-    env:
-      GOCACHE: ${{ runner.temp }}/go-cache
-      OUTPUT_DIR: ${{ runner.temp }}/gooo-semantic-delta-output
-      RELEASE_TAG: ${{ inputs.tag }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,7 +23,11 @@ jobs:
           go-version: '1.27.x'
           check-latest: true
       - name: Prepare caller-owned paths
-        run: mkdir -p "$GOCACHE" "$OUTPUT_DIR"
+        run: |
+          echo "GOCACHE=$RUNNER_TEMP/go-cache" >> "$GITHUB_ENV"
+          echo "OUTPUT_DIR=$RUNNER_TEMP/gooo-semantic-delta-output" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=${{ inputs.tag }}" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/go-cache" "$RUNNER_TEMP/gooo-semantic-delta-output"
       - name: Regenerate semantic projection
         run: go run ./cmd/gooo-delta generate --source .gooo/semantic-delta-certifier.gooo --output internal/generated
       - name: Verify tag projection
