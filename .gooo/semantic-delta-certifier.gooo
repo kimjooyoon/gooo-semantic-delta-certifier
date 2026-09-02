@@ -1,0 +1,26 @@
+@gooo schema=gooo/semantic-delta-certifier/v1
+protocol=gooo/semantic-delta-certifier/v1
+status_values=ADDED,REMOVED,CHANGED,UNCHANGED,UNKNOWN,REFUTED
+status_precedence=REFUTED,UNKNOWN,CLOSED
+proof_choices=FOUNDATION,COHERENCE,REGRESSION
+indicator_classes=DRIVER,OUTCOME,GUARDRAIL
+unknown_fields=stage,step,reason,unknown_class,next_operation,blocked_by
+denominator id=semantic-delta-v1 total=15
+cell ordinal=1 id=gooo://semantic-delta/entity/identity domain=ENTITY proof=FOUNDATION indicator=DRIVER name=EntityIdentity
+cell ordinal=2 id=gooo://semantic-delta/entity/digest domain=ENTITY proof=COHERENCE indicator=OUTCOME name=EntityDigest
+cell ordinal=3 id=gooo://semantic-delta/entity/release-binding domain=ENTITY proof=REGRESSION indicator=GUARDRAIL name=EntityReleaseBinding
+cell ordinal=4 id=gooo://semantic-delta/relation/identity domain=RELATION proof=FOUNDATION indicator=DRIVER name=RelationIdentity
+cell ordinal=5 id=gooo://semantic-delta/relation/endpoints domain=RELATION proof=COHERENCE indicator=OUTCOME name=RelationEndpoints
+cell ordinal=6 id=gooo://semantic-delta/relation/digest domain=RELATION proof=REGRESSION indicator=GUARDRAIL name=RelationDigest
+cell ordinal=7 id=gooo://semantic-delta/effect/identity domain=EFFECT proof=FOUNDATION indicator=DRIVER name=EffectIdentity
+cell ordinal=8 id=gooo://semantic-delta/effect/operation domain=EFFECT proof=COHERENCE indicator=OUTCOME name=EffectOperation
+cell ordinal=9 id=gooo://semantic-delta/effect/digest domain=EFFECT proof=REGRESSION indicator=GUARDRAIL name=EffectDigest
+cell ordinal=10 id=gooo://semantic-delta/capability/identity domain=CAPABILITY proof=FOUNDATION indicator=DRIVER name=CapabilityIdentity
+cell ordinal=11 id=gooo://semantic-delta/capability/name domain=CAPABILITY proof=COHERENCE indicator=OUTCOME name=CapabilityName
+cell ordinal=12 id=gooo://semantic-delta/capability/digest domain=CAPABILITY proof=REGRESSION indicator=GUARDRAIL name=CapabilityDigest
+cell ordinal=13 id=gooo://semantic-delta/artifact/identity domain=ARTIFACT proof=FOUNDATION indicator=DRIVER name=ArtifactIdentity
+cell ordinal=14 id=gooo://semantic-delta/artifact/digest domain=ARTIFACT proof=COHERENCE indicator=OUTCOME name=ArtifactDigest
+cell ordinal=15 id=gooo://semantic-delta/artifact/release-binding domain=ARTIFACT proof=REGRESSION indicator=GUARDRAIL name=ArtifactReleaseBinding
+corpus id=normal expected=CLOSED purpose=complete exact before-after corpus
+corpus id=unknown expected=UNKNOWN purpose=missing exact evidence corpus
+corpus id=refuted expected=REFUTED purpose=contradictory identity corpus

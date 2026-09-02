@@ -1,0 +1,30 @@
+{
+  "schema": "gooo/semantic-delta-certifier/fixture/v1",
+  "case_id": "unknown",
+  "class": "unknown",
+  "expected_state": "UNKNOWN",
+  "input": {
+    "schema": "gooo/semantic-delta-certifier/input/v1",
+    "case_id": "unknown",
+    "old": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-unknown-old",
+      "tag": "v0.9.0",
+      "release_digest": "sha256:54eb2af1e3e96b80504b5d62ef9b6e669b2bfad6620cb5c792d630f5a96bfa0a",
+      "observed_release_digest": "sha256:54eb2af1e3e96b80504b5d62ef9b6e669b2bfad6620cb5c792d630f5a96bfa0a",
+      "semantic_ir_digest": "sha256:41e463683179e060d8e3926c27c8ca6d354ba28fb7028a410bf40380f876ec8f",
+      "observed_semantic_ir_digest": "sha256:41e463683179e060d8e3926c27c8ca6d354ba28fb7028a410bf40380f876ec8f",
+      "semantic_ir": {"schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1", "ir_id": "unknown-old", "digest": "sha256:41e463683179e060d8e3926c27c8ca6d354ba28fb7028a410bf40380f876ec8f", "observed_digest": "sha256:41e463683179e060d8e3926c27c8ca6d354ba28fb7028a410bf40380f876ec8f", "entities": [{"id": "entity:parser", "kind": "grammar", "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "name": "Parser"}], "relations": [], "effects": [], "capabilities": [], "generated_artifacts": []}
+    },
+    "new": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-unknown-new",
+      "tag": "v0.10.0",
+      "release_digest": "sha256:dfb8b18df06692e7f715e09aa2c3fdd9c7690a16db28638639b3cf00f0c5f1d2",
+      "observed_release_digest": "sha256:dfb8b18df06692e7f715e09aa2c3fdd9c7690a16db28638639b3cf00f0c5f1d2",
+      "semantic_ir_digest": "sha256:4638df308fe7f2a7bd4a9f9d97a1ca0fd0c08860628ab932ae1114e761673a04",
+      "observed_semantic_ir_digest": "",
+      "semantic_ir": {"schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1", "ir_id": "unknown-new", "digest": "sha256:4638df308fe7f2a7bd4a9f9d97a1ca0fd0c08860628ab932ae1114e761673a04", "observed_digest": "sha256:4638df308fe7f2a7bd4a9f9d97a1ca0fd0c08860628ab932ae1114e761673a04", "entities": [{"id": "entity:parser", "kind": "grammar", "digest": "", "name": "Parser"}], "relations": [], "effects": [], "capabilities": [], "generated_artifacts": []}
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "gooo/semantic-delta-certifier/fixture/v1",
+  "case_id": "refuted",
+  "class": "refuted",
+  "expected_state": "REFUTED",
+  "input": {
+    "schema": "gooo/semantic-delta-certifier/input/v1",
+    "case_id": "refuted",
+    "old": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-refuted-old",
+      "tag": "v0.9.0",
+      "release_digest": "sha256:4ee524ab66428c9115d19a84311de74c6a289dffaf8588a7eaf3b33d011b77bb",
+      "observed_release_digest": "sha256:4ee524ab66428c9115d19a84311de74c6a289dffaf8588a7eaf3b33d011b77bb",
+      "semantic_ir_digest": "sha256:2de91d035cb57e99c66be6ba05b90f984f0aa4aa17d3b72bdeb232fd3e6b3700",
+      "observed_semantic_ir_digest": "sha256:2de91d035cb57e99c66be6ba05b90f984f0aa4aa17d3b72bdeb232fd3e6b3700",
+      "semantic_ir": {"schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1", "ir_id": "refuted-old", "digest": "sha256:2de91d035cb57e99c66be6ba05b90f984f0aa4aa17d3b72bdeb232fd3e6b3700", "observed_digest": "sha256:2de91d035cb57e99c66be6ba05b90f984f0aa4aa17d3b72bdeb232fd3e6b3700", "entities": [{"id": "entity:parser", "kind": "grammar", "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "name": "Parser"}], "relations": [], "effects": [], "capabilities": [], "generated_artifacts": []}
+    },
+    "new": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-refuted-new",
+      "tag": "v0.10.0",
+      "release_digest": "sha256:b87aa96e92481d2f156cf1fc3e4186d6d876d6659568c7ea5645a8f05c606d14",
+      "observed_release_digest": "sha256:b87aa96e92481d2f156cf1fc3e4186d6d876d6659568c7ea5645a8f05c606d14",
+      "semantic_ir_digest": "sha256:b32eb3dce438bc3b09579f44f27fff87013a18edbd0898a8af56799489c99884",
+      "observed_semantic_ir_digest": "sha256:b32eb3dce438bc3b09579f44f27fff87013a18edbd0898a8af56799489c99884",
+      "semantic_ir": {"schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1", "ir_id": "refuted-new", "digest": "sha256:b32eb3dce438bc3b09579f44f27fff87013a18edbd0898a8af56799489c99884", "observed_digest": "sha256:b32eb3dce438bc3b09579f44f27fff87013a18edbd0898a8af56799489c99884", "entities": [{"id": "entity:parser", "kind": "grammar", "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "name": "Parser"}, {"id": "entity:parser", "kind": "grammar", "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "name": "Parser"}], "relations": [], "effects": [], "capabilities": [], "generated_artifacts": []}
+    },
+    "improvement": {"claimed_state": "FIXED_POINT", "explicit": false, "pair_id": "", "before": null, "after": null, "before_identity": "", "after_identity": "", "exact_digest": ""}
+  }
+}

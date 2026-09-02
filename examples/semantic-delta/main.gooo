@@ -1,0 +1,6 @@
+@gooo schema=gooo/semantic-delta-certifier/example/v1
+example SemanticDeltaCertifier
+activity CompareExactIdentity
+activity PreserveUnknownCoordinates
+activity ResolveRefutedUnknownClosed
+activity RenderDeltaDossier

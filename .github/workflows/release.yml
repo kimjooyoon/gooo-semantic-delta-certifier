@@ -1,0 +1,63 @@
+name: release-assets
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing immutable release tag
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    env:
+      GOCACHE: ${{ runner.temp }}/go-cache
+      OUTPUT_DIR: ${{ runner.temp }}/gooo-semantic-delta-output
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.x'
+          check-latest: true
+      - name: Prepare caller-owned paths
+        run: mkdir -p "$GOCACHE" "$OUTPUT_DIR"
+      - name: Regenerate semantic projection
+        run: go run ./cmd/gooo-delta generate --source .gooo/semantic-delta-certifier.gooo --output internal/generated
+      - name: Verify tag projection
+        run: git diff --exit-code -- internal/generated
+      - name: Build
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/build.time" go build ./...
+      - name: Test
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/test.time" go test ./...
+      - name: Conformance
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/conformance.time" go run ./cmd/gooo-delta conformance --fixtures fixtures/cases --repository-root "$GITHUB_WORKSPACE" --output-dir "$OUTPUT_DIR"
+      - name: Collect exact runner measurements
+        run: bash scripts/ci-metrics.sh --build-time "$RUNNER_TEMP/build.time" --test-time "$RUNNER_TEMP/test.time" --conformance-time "$RUNNER_TEMP/conformance.time" --cache-dir "$GOCACHE" --output "$OUTPUT_DIR/ci-metrics.json"
+      - name: Bind runner measurements into evidence
+        run: go run ./cmd/gooo-delta enrich --evidence "$OUTPUT_DIR/semantic-delta-evidence.json" --metrics "$OUTPUT_DIR/ci-metrics.json" --output-dir "$OUTPUT_DIR"
+      - name: Create immutable release bundle
+        run: |
+          sha256sum "$OUTPUT_DIR"/* > "$OUTPUT_DIR/asset-digests.sha256"
+          tar -czf "gooo-semantic-delta-certifier-${RELEASE_TAG}.tar.gz" -C "$OUTPUT_DIR" .
+          sha256sum "gooo-semantic-delta-certifier-${RELEASE_TAG}.tar.gz" > "gooo-semantic-delta-certifier-${RELEASE_TAG}.tar.gz.sha256"
+      - name: Upload release assets without replacement
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null
+          gh release upload "$RELEASE_TAG" "gooo-semantic-delta-certifier-${RELEASE_TAG}.tar.gz" "gooo-semantic-delta-certifier-${RELEASE_TAG}.tar.gz.sha256"
+      - name: Upload release workflow evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gooo-semantic-delta-certifier-release-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/gooo-semantic-delta-output
+            gooo-semantic-delta-certifier-${{ inputs.tag }}.tar.gz*

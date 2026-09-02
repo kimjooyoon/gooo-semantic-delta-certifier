@@ -1,0 +1,20 @@
+{
+  "schema": "gooo/semantic-delta-certifier/development-provenance/v1",
+  "authority": ".gooo/semantic-delta-certifier.gooo",
+  "local_validation": {
+    "tests": 0,
+    "builds": 0,
+    "gofmt": 0,
+    "vet": 0,
+    "actionlint": 0
+  },
+  "runtime_authority": {
+    "repository_writes": 0,
+    "caller_owned_output": true
+  },
+  "incidents": [],
+  "notes": [
+    "GitHub Actions is the validation authority.",
+    "No other Gooo repository or gooo-self-improvement-ledger is modified."
+  ]
+}

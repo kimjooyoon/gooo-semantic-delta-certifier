@@ -1,0 +1,50 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  authoritative:
+    runs-on: ubuntu-latest
+    env:
+      GOCACHE: ${{ runner.temp }}/go-cache
+      OUTPUT_DIR: ${{ runner.temp }}/gooo-semantic-delta-output
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.x'
+          check-latest: true
+      - name: Prepare caller-owned paths
+        run: mkdir -p "$GOCACHE" "$OUTPUT_DIR"
+      - name: Regenerate semantic projection
+        run: go run ./cmd/gooo-delta generate --source .gooo/semantic-delta-certifier.gooo --output internal/generated
+      - name: Verify generated projection is committed
+        run: git diff --exit-code -- internal/generated
+      - name: Apply authoritative formatter
+        run: gofmt -w $(find cmd internal -type f -name '*.go')
+      - name: Build
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/build.time" go build ./...
+      - name: Test
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/test.time" go test ./...
+      - name: Vet
+        run: go vet ./...
+      - name: Conformance
+        run: /usr/bin/time -v -o "$RUNNER_TEMP/conformance.time" go run ./cmd/gooo-delta conformance --fixtures fixtures/cases --repository-root "$GITHUB_WORKSPACE" --output-dir "$OUTPUT_DIR"
+      - name: Collect exact runner measurements
+        run: bash scripts/ci-metrics.sh --build-time "$RUNNER_TEMP/build.time" --test-time "$RUNNER_TEMP/test.time" --conformance-time "$RUNNER_TEMP/conformance.time" --cache-dir "$GOCACHE" --output "$OUTPUT_DIR/ci-metrics.json"
+      - name: Bind runner measurements into evidence
+        run: go run ./cmd/gooo-delta enrich --evidence "$OUTPUT_DIR/semantic-delta-evidence.json" --metrics "$OUTPUT_DIR/ci-metrics.json" --output-dir "$OUTPUT_DIR"
+      - name: Record asset digests
+        run: sha256sum "$OUTPUT_DIR"/* > "$OUTPUT_DIR/asset-digests.sha256"
+      - name: Upload machine evidence and dossier
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gooo-semantic-delta-certifier-ci-${{ github.run_id }}
+          path: ${{ runner.temp }}/gooo-semantic-delta-output

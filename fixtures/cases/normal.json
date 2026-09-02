@@ -1,0 +1,87 @@
+{
+  "schema": "gooo/semantic-delta-certifier/fixture/v1",
+  "case_id": "normal",
+  "class": "normal",
+  "expected_state": "CLOSED",
+  "input": {
+    "schema": "gooo/semantic-delta-certifier/input/v1",
+    "case_id": "normal",
+    "old": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-old",
+      "tag": "v0.9.0",
+      "release_digest": "sha256:10958b9432dd6d0de56ce3781f5f2b52a5ccbd69dbbc8fdb4ce9830f9ba1fdeb",
+      "observed_release_digest": "sha256:10958b9432dd6d0de56ce3781f5f2b52a5ccbd69dbbc8fdb4ce9830f9ba1fdeb",
+      "semantic_ir_digest": "sha256:d8e354c1d4470bc60b9985049eb8cfaff24f145dc101096b1c969a9142458c70",
+      "observed_semantic_ir_digest": "sha256:d8e354c1d4470bc60b9985049eb8cfaff24f145dc101096b1c969a9142458c70",
+      "semantic_ir": {
+        "schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1",
+        "ir_id": "gooo-ir-old",
+        "digest": "sha256:d8e354c1d4470bc60b9985049eb8cfaff24f145dc101096b1c969a9142458c70",
+        "observed_digest": "sha256:d8e354c1d4470bc60b9985049eb8cfaff24f145dc101096b1c969a9142458c70",
+        "entities": [
+          {"id": "entity:parser", "kind": "grammar", "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "name": "Parser"},
+          {"id": "entity:evaluator", "kind": "runtime", "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "name": "Evaluator"}
+        ],
+        "relations": [
+          {"id": "relation:parser-evaluator", "kind": "lowers-to", "from": "entity:parser", "to": "entity:evaluator", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+        ],
+        "effects": [
+          {"id": "effect:stdout", "operation": "io.write", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+          {"id": "effect:stderr", "operation": "io.write", "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}
+        ],
+        "capabilities": [
+          {"id": "capability:fs-read", "name": "fs.read", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}
+        ],
+        "generated_artifacts": [
+          {"id": "artifact:parser", "kind": "go", "path": "dist/parser.go", "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}
+        ]
+      }
+    },
+    "new": {
+      "schema": "gooo/semantic-delta-certifier/release-input/v1",
+      "release_id": "gooo-release-new",
+      "tag": "v0.10.0",
+      "release_digest": "sha256:109cec630fc98f19a65b31311c56c3912df9aa2f43808e4aff1689281e9db0bb",
+      "observed_release_digest": "sha256:109cec630fc98f19a65b31311c56c3912df9aa2f43808e4aff1689281e9db0bb",
+      "semantic_ir_digest": "sha256:ec2c1198ac98fdf971bf6030ee955d4fce8682fd86261daef52f18aff40ac568",
+      "observed_semantic_ir_digest": "sha256:ec2c1198ac98fdf971bf6030ee955d4fce8682fd86261daef52f18aff40ac568",
+      "semantic_ir": {
+        "schema": "gooo/semantic-delta-certifier/semantic-ir-input/v1",
+        "ir_id": "gooo-ir-new",
+        "digest": "sha256:ec2c1198ac98fdf971bf6030ee955d4fce8682fd86261daef52f18aff40ac568",
+        "observed_digest": "sha256:ec2c1198ac98fdf971bf6030ee955d4fce8682fd86261daef52f18aff40ac568",
+        "entities": [
+          {"id": "entity:parser", "kind": "grammar", "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "name": "Parser"},
+          {"id": "entity:evaluator", "kind": "runtime", "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "name": "Evaluator"},
+          {"id": "entity:optimizer", "kind": "optimizer", "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "name": "Optimizer"}
+        ],
+        "relations": [
+          {"id": "relation:parser-evaluator", "kind": "lowers-to", "from": "entity:parser", "to": "entity:evaluator", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+          {"id": "relation:evaluator-optimizer", "kind": "feeds", "from": "entity:evaluator", "to": "entity:optimizer", "digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999"}
+        ],
+        "effects": [
+          {"id": "effect:stdout", "operation": "io.write", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}
+        ],
+        "capabilities": [
+          {"id": "capability:fs-read", "name": "fs.read", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
+          {"id": "capability:net-write", "name": "net.write", "digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888"}
+        ],
+        "generated_artifacts": [
+          {"id": "artifact:parser", "kind": "go", "path": "dist/parser.go", "digest": "sha256:ffffffffff000000000000000000000000000000000000000000000000000000"},
+          {"id": "artifact:runtime", "kind": "go", "path": "dist/runtime.go", "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"}
+        ]
+      }
+    },
+    "improvement": {
+      "claimed_state": "OBSERVED",
+      "explicit": true,
+      "pair_id": "normal-pair",
+      "before": 8,
+      "after": 13,
+      "before_identity": "metrics-v1",
+      "after_identity": "metrics-v1",
+      "exact_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    }
+  }
+}
