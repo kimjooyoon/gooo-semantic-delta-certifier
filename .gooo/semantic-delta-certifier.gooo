@@ -21,6 +21,6 @@ cell ordinal=12 id=gooo://semantic-delta/capability/digest domain=CAPABILITY pro
 cell ordinal=13 id=gooo://semantic-delta/artifact/identity domain=ARTIFACT proof=FOUNDATION indicator=DRIVER name=ArtifactIdentity
 cell ordinal=14 id=gooo://semantic-delta/artifact/digest domain=ARTIFACT proof=COHERENCE indicator=OUTCOME name=ArtifactDigest
 cell ordinal=15 id=gooo://semantic-delta/artifact/release-binding domain=ARTIFACT proof=REGRESSION indicator=GUARDRAIL name=ArtifactReleaseBinding
-corpus id=normal expected=CLOSED purpose=complete exact before-after corpus
-corpus id=unknown expected=UNKNOWN purpose=missing exact evidence corpus
-corpus id=refuted expected=REFUTED purpose=contradictory identity corpus
+corpus id=normal expected=CLOSED purpose=complete_exact_before_after_corpus
+corpus id=unknown expected=UNKNOWN purpose=missing_exact_evidence_corpus
+corpus id=refuted expected=REFUTED purpose=contradictory_identity_corpus

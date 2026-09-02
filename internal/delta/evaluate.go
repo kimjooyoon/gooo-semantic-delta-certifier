@@ -62,7 +62,9 @@ func Evaluate(input Input, inventory Inventory) Evidence {
 		}
 		return evidence.DeltaCells[i].Identity < evidence.DeltaCells[j].Identity
 	})
-	evidence.Improvement, improvementUnknown, improvementRefuted := compareImprovement(input.Improvement)
+	var improvementUnknown []Unknown
+	var improvementRefuted []string
+	evidence.Improvement, improvementUnknown, improvementRefuted = compareImprovement(input.Improvement)
 	unknowns = append(unknowns, improvementUnknown...)
 	contradictions = append(contradictions, improvementRefuted...)
 	evidence.Unknowns = uniqueUnknowns(unknowns)
@@ -305,4 +307,3 @@ func uniqueUnknowns(values []Unknown) []Unknown {
 	sort.Slice(result, func(i, j int) bool { return result[i].Stage+result[i].Step+result[i].Reason < result[j].Stage+result[j].Step+result[j].Reason })
 	return result
 }
-
