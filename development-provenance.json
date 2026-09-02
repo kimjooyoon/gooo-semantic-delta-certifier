@@ -28,8 +28,8 @@
     {
       "code": "CI_COMPILE_FAILURE",
       "state": "REFUTED",
-      "run_ids": [33630832141],
-      "detail": "Actions compiler caught a selector assignment using := and a missing generated package import; corrected in the same PR."
+      "run_ids": [33630832141, 33630908501],
+      "detail": "Actions compiler caught a selector assignment using :=, a missing generated package import, and an unused CLI import; corrected in the same PR."
     }
   ],
   "notes": [

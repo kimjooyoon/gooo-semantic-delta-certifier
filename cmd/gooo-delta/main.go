@@ -8,7 +8,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
 
 	"github.com/kimjooyoon/gooo-semantic-delta-certifier/internal/delta"
 	"github.com/kimjooyoon/gooo-semantic-delta-certifier/internal/generator"
